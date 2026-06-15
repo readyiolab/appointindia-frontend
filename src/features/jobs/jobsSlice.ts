@@ -5,6 +5,7 @@ import { ENDPOINTS } from '../../services/endpoints';
 export interface JobData {
   id?: string;
   companyId?: string;
+  companyName?: string;
   recruiterId?: string;
   title: string;
   description: string;
