@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useSEO } from '../../hooks/useSEO';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import {
@@ -29,6 +30,13 @@ interface CategoryItem {
 export const Home: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  useSEO({
+    title: 'Find Your Dream Job',
+    description: 'Explore over 5 lakh+ jobs, MNC opportunities, supply chain jobs, and data science roles on AppointIndia. Your next career move starts here.',
+    keywords: 'jobs, recruitment, hiring, resume, MNC jobs, careers, job portal, AppointIndia',
+    canonicalUrl: 'https://appointindia.com',
+  });
 
   const [skills, setSkills] = useState('');
   const [experience, setExperience] = useState('');

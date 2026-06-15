@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchMyApplicationsThunk } from '../../features/applications/applicationsSlice';
+import { useSEO } from '../../hooks/useSEO';
 import { Badge } from '../../components/ui/badge';
 import { FileText, Loader2, Calendar, Building2, ChevronRight, Inbox } from 'lucide-react';
 
@@ -18,6 +19,12 @@ const statusOrder = ['applied', 'screening', 'shortlisted', 'interview_scheduled
 export const MyApplications: React.FC = () => {
   const dispatch = useAppDispatch();
   const { myApplications, loading } = useAppSelector((s) => s.applications);
+
+  useSEO({
+    title: 'My Applications',
+    description: 'Track the status of all your job applications on AppointIndia.',
+    keywords: 'job applications, track applications, interviews, recruiter status, AppointIndia',
+  });
 
   useEffect(() => {
     dispatch(fetchMyApplicationsThunk());

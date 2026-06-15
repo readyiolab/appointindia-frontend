@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import { useSEO } from '../../hooks/useSEO';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -11,6 +12,12 @@ import {
 
 export const CandidateProfile: React.FC = () => {
   const { candidateProfile, fetchProfile, updateProfile, profileLoading, error } = useAuth();
+
+  useSEO({
+    title: 'My Profile',
+    description: 'Update and manage your candidate profile on AppointIndia. Complete your resume, salary requirements, experience details, and locations.',
+    keywords: 'candidate profile, manage profile, update resume, job application details, AppointIndia',
+  });
   const [saving, setSaving] = useState(false);
 
   const [form, setForm] = useState({

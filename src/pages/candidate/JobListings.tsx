@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { searchJobsThunk } from '../../features/jobs/jobsSlice';
 import { fetchMyApplicationsThunk } from '../../features/applications/applicationsSlice';
 import { useAuth } from '../../hooks/useAuth';
+import { useSEO } from '../../hooks/useSEO';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
 import {
@@ -53,6 +54,13 @@ const getJobSlug = (job: any) => {
 export const JobListings: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useSEO({
+    title: 'Search Jobs & Openings',
+    description: 'Find active job openings across Bengaluru, Pune, Hyderabad, Noida, and Gurgaon on AppointIndia. Search by role, skills, experience, and department.',
+    keywords: 'job listings, search jobs, software jobs, engineer jobs, work from home jobs, AppointIndia',
+    canonicalUrl: 'https://appointindia.com/jobs',
+  });
   const [searchParams, setSearchParams] = useSearchParams();
   const { jobs, loading } = useAppSelector((s) => s.jobs);
   const { isLoggedIn, user } = useAuth();

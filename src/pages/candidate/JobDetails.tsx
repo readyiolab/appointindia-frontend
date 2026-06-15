@@ -9,6 +9,7 @@ import {
 } from '../../features/applications/applicationsSlice';
 import { loginThunk, registerThunk } from '../../features/auth/authSlice';
 import { useAuth } from '../../hooks/useAuth';
+import { useSEO } from '../../hooks/useSEO';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -77,6 +78,13 @@ export const JobDetails: React.FC = () => {
   const { currentJob, detailLoading, error: jobError } = useAppSelector((s) => s.jobs);
   const { isLoggedIn, user, error: authError, loading: authLoading } = useAuth();
   const { myApplications, applyLoading, applyError, applySuccess } = useAppSelector((s) => s.applications);
+
+  useSEO({
+    title: currentJob ? `${currentJob.title} - ${currentJob.companyName || 'AppointIndia'}` : 'Job Details',
+    description: currentJob ? `${currentJob.title} vacancy at ${currentJob.companyName || 'AppointIndia'} in ${currentJob.location}. ${currentJob.description.substring(0, 150)}...` : 'View job details and apply online on AppointIndia.',
+    keywords: currentJob ? `${currentJob.title}, jobs at ${currentJob.companyName}, ${currentJob.location} jobs, apply online, AppointIndia` : 'jobs, careers, job openings',
+    canonicalUrl: currentJob ? `https://appointindia.com/jobs/${jobId}` : undefined,
+  });
 
   // Drawer and Mode States
   const [drawerOpen, setDrawerOpen] = useState(false);
